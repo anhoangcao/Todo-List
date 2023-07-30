@@ -7,7 +7,7 @@ function Header() {
             <input class="new-todo" 
             placeholder="What needs to be done?" 
             autofocus 
-            onkeyup="event.keycode === 13 && dispatch('add', this.value.trim())">
+            onkeyup="event.keyCode === 13 && dispatch('add', this.value.trim())">
         </header>
     `
 }
