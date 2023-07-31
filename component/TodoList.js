@@ -3,7 +3,7 @@ import { connect  } from '../store.js'
 import TodoItem from './TodoItem.js'
 
 
-function TodoList({ todos, tilters }) {
+function TodoList({ todos, filter, filters }) {
     
     return html `
         <section class="main">
@@ -12,11 +12,15 @@ function TodoList({ todos, tilters }) {
                 class="toggle-all" 
                 type="checkbox"
                 onchange="dispatch('toggleAll', this.checked)"
-                ${todos.every(tilters.completed) && 'checked'}
+                ${todos.every(filters.completed) && 'checked'}
             >
             <label for="toggle-all">Mark all as complete</label>
             <ul class="todo-list">
-                ${todos.map((todo, index) => TodoItem({ todo, index }))}
+                ${todos
+                    .filter(filters[filter])
+                    .map((todo, index) => 
+                        TodoItem({ todo, index })
+                    )}
             </ul>
         </section>
     `
